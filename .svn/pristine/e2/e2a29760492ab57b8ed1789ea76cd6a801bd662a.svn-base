@@ -1,0 +1,239 @@
+package frame;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JPopupMenu.Separator;
+import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
+import javax.swing.table.TableColumn;
+
+public class PageProperties extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+
+
+	public PageProperties() {
+		setBackground(Color.white);
+		
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension (345,40));
+		
+		JLabel pageNumberJLabel = new JLabel("Page (Page 1)");
+		pageNumberJLabel.setFont(new Font("Arial",0,13));
+		pageNumberJLabel.setPreferredSize(new Dimension(340,30));
+		panel.add(pageNumberJLabel);
+		
+		add(panel);
+		
+		
+		JPanel pagePanel = new JPanel();
+		pagePanel.setBackground(Color.white);
+		pagePanel.setPreferredSize(new Dimension (345,40));
+				
+		JButton colorButton = new JButton();
+		colorButton.setIcon(new ImageIcon("icons\\paint-brush.png"));
+		colorButton.setPreferredSize(new Dimension(30,30));
+		colorButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrame mainFrame = (MainFrame) SwingUtilities.getWindowAncestor((Component) e.getSource());
+				Color boja = JColorChooser.showDialog(null, "Choose color ", Color.RED);
+				System.out.println(mainFrame.toString());	
+				mainFrame.getMainPanel().getCanvasPanel().setBackground(boja);
+			}
+		});	
+		pagePanel.add(colorButton);
+		
+		JTextPane width = new JTextPane();
+		width.setFont(new Font("Arial",0,17));
+		width.setText("W 610");
+		width.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		width.setPreferredSize(new Dimension(68,30));
+		pagePanel.add(width);
+		
+		JTextPane height = new JTextPane();
+		height.setFont(new Font("Arial",0,17));
+		height.setText("H 420");
+		height.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		height.setPreferredSize(new Dimension(68,30));
+		pagePanel.add(height);
+		
+		JTextPane opacity = new JTextPane();
+		opacity.setFont(new Font("Arial",0,17));
+		opacity.setText("O 100%");
+		opacity.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		opacity.setPreferredSize(new Dimension(68,30));
+		pagePanel.add(opacity);
+		
+		add(pagePanel);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.white);
+		panel1.setPreferredSize(new Dimension (345,40));
+		
+		JLabel pageSizeJLabel = new JLabel("Page size");
+		pageSizeJLabel.setFont(new Font("Arial",0,13));
+		pageSizeJLabel.setPreferredSize(new Dimension(60,30));
+		panel1.add(pageSizeJLabel);
+		
+		
+		String[] size = {"A4","A1","A2","A3","A5","A6","A7","A8","A9"};
+		
+		JComboBox<String> sizeList = new JComboBox<String>(size);
+		sizeList.setBackground(Color.white);
+		sizeList.setPreferredSize(new Dimension(100,30));
+		panel1.add(sizeList);
+		
+		JButton btn1 = new JButton();
+		btn1.setPreferredSize(new Dimension(30,30));
+		btn1.setIcon(new ImageIcon("icons\\rotate.png"));
+		panel1.add(btn1);
+		
+		JButton btn2 = new JButton();
+		btn2.setPreferredSize(new Dimension(40,30));
+		btn2.setIcon(new ImageIcon("icons\\trim.png"));
+		panel1.add(btn2);
+		
+		add(panel1);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.white);
+		panel2.setPreferredSize(new Dimension (345,40));
+		
+		JLabel marginJLabel = new JLabel("Margin");
+		marginJLabel.setFont(new Font("Arial",0,13));
+		marginJLabel.setPreferredSize(new Dimension(60,30));
+		panel2.add(marginJLabel);
+		
+	
+		
+		JTextPane left = new JTextPane();
+		left.setFont(new Font("Arial",0,19));
+		left.setText("0");
+		left.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		left.setPreferredSize(new Dimension(40,30));
+		panel2.add(left);
+		
+		JTextPane top = new JTextPane();
+		top.setFont(new Font("Arial",0,19));
+		top.setText("0");
+		top.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		top.setPreferredSize(new Dimension(40,30));
+		panel2.add(top);
+		
+		JTextPane right = new JTextPane();
+		right.setFont(new Font("Arial",0,19));
+		right.setText("0");
+		right.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		right.setPreferredSize(new Dimension(40,30));
+		panel2.add(right);
+		
+		JTextPane bottom = new JTextPane();
+		bottom.setFont(new Font("Arial",0,19));
+		bottom.setText("0");
+		bottom.setBorder(BorderFactory.createLineBorder(Color.gray,1));
+		bottom.setPreferredSize(new Dimension(40,30));
+		panel2.add(bottom);
+		
+		add(panel2);
+		
+		JPanel documentPanel = new JPanel();
+		documentPanel.setPreferredSize(new Dimension (345,40));
+		
+		JLabel documentJLabel = new JLabel("Document");
+		documentJLabel.setFont(new Font("Arial",0,13));
+		documentJLabel.setPreferredSize(new Dimension(340,30));
+		documentPanel.add(documentJLabel);
+		
+		add(documentPanel);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.white);
+		panel3.setPreferredSize(new Dimension (345,40));
+		
+		JLabel unitJLabel  = new JLabel("Unit");
+		unitJLabel.setFont(new Font("Arial",0,13));
+		unitJLabel.setPreferredSize(new Dimension(60,30));
+		panel3.add(unitJLabel);
+		
+		String[] unit = {"Milimeters","Pixels","Centimeters","Inches","Points"};
+		
+		JComboBox<String> unitList = new JComboBox<String>(unit);
+		unitList.setBackground(Color.white);
+		unitList.setPreferredSize(new Dimension(170,30));
+		panel3.add(unitList);
+		
+		add(panel3);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setBackground(Color.white);
+		panel4.setPreferredSize(new Dimension (345,40));
+		
+		
+		JLabel dpiJLabel  = new JLabel("DPI");
+		dpiJLabel.setFont(new Font("Arial",0,13));
+		dpiJLabel.setPreferredSize(new Dimension(60,30));
+		panel4.add(dpiJLabel);
+		
+		
+		String[] dpi = {"72","96","144","300"};
+		
+		JComboBox<String> dpiList = new JComboBox<String>(dpi);
+		dpiList.setBackground(Color.white);
+		dpiList.setPreferredSize(new Dimension(170,30));
+		panel4.add(dpiList);
+		
+		add(panel4);
+		
+
+		JPanel panel5 = new JPanel();
+		panel5.setBackground(Color.white);
+		panel5.setPreferredSize(new Dimension (345,40));
+		
+		JLabel gridJLabel  = new JLabel("Grid");
+		gridJLabel.setFont(new Font("Arial",0,13));
+		gridJLabel.setPreferredSize(new Dimension(60,30));
+		panel5.add(gridJLabel);
+		
+		JRadioButton offButton  = new JRadioButton("Off");
+		offButton.setFont(new Font("Arial",0,13));
+		offButton.setSelected(true);
+		offButton.setBackground(Color.white);
+		panel5.add(offButton);
+		
+		JRadioButton onButton  = new JRadioButton("On");
+		onButton.setFont(new Font("Arial",0,13));
+		onButton.setBackground(Color.white);
+		panel5.add(onButton);
+		
+		JRadioButton isometricButton  = new JRadioButton("Isometric");
+		isometricButton.setFont(new Font("Arial",0,13));
+		isometricButton.setBackground(Color.white);
+		panel5.add(isometricButton);
+		
+		
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(offButton);
+		buttonGroup.add(onButton);
+		buttonGroup.add(isometricButton);
+		
+		 add(panel5);
+	}
+}
